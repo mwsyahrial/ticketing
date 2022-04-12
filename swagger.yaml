@@ -1,0 +1,1266 @@
+---
+openapi: "3.0.3"
+info:
+  version: development
+  title: Ticketing Application
+  description: "API documentation for **Ticketing Application**"
+servers:
+  - url:  http://localhost:8080
+    description: "Development"
+tags:
+  - name: "API Ticketing Application"
+paths:
+  /user/create:
+    post:
+      tags:
+        - user
+      summary: create user
+      operationId: createUser
+      requestBody:
+        description: Request body to create user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  name:  "budi"
+                  email: "buudi@mail.com"
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                    {
+                      "meta": {
+                      "message": "User has been added",
+                      "code": 200,
+                      "status": "success"
+                      },
+                      "data": {
+                      "id": 68,
+                      "name": "budi",
+                      "email": "buudi@mail.com"
+                      }
+                    }
+  /user/update:
+    post:
+      tags:
+        - user
+      summary: update user
+      operationId: updateUser
+      requestBody:
+        description: Request body to update user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  id: 68
+                  name:  "budi"
+                  email: "buudi@mail.com"
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                    {
+                        "meta": {
+                            "message": "Update user data",
+                            "code": 200,
+                            "status": "success"
+                        },
+                        "data": {
+                            "id": 68,
+                            "name": "budi",
+                            "email": "buudi@mail.com"
+                        }
+                    }                    
+  /user/delete:
+    post:
+      tags:
+        - user
+      summary: delete user
+      operationId: deleteUser
+      requestBody:
+        description: Request body to delete user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteUserRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  id:  1
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteUserRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                      {
+                          "meta": {
+                              "message": "Delete user data",
+                              "code": 200,
+                              "status": "success"
+                          },
+                          "data": null
+                      }                                      
+  /users:
+    post:
+      tags:
+        - user
+      summary: get all user
+      operationId: getAllUser
+      requestBody:
+        description: Request body to get all user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAllUserRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllUserRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                    meta:
+                      message: Get user data
+                      code: 200
+                      status: success
+                    data:
+                      - id: 66
+                        name: anton
+                        email: anton@mail.com
+                      - id: 67
+                        name: budi
+                        email: budi@mail.com
+  /user:
+    post:
+      tags:
+        - user
+      summary: get user by id
+      operationId: getUserById
+      requestBody:
+        description: Request body to get user by id
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetUserRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  id:  66
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                    meta:
+                      message: Get user data
+                      code: 200
+                      status: success
+                    data:
+                      id: 66
+                      name: anton
+                      email: anton@mail.com
+                      
+  /ticket/create:
+    post:
+      tags:
+        - ticket
+      summary: create ticket
+      operationId: createTicket
+      requestBody:
+        description: Request body to create ticket
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTicketRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  event: "kkonser"
+                  schedule: "2022-02-01 19:30 +07"
+                  price: 250000
+                  quota: 27
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTicketRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                    meta:
+                      message: Ticket has been added
+                      code: 200
+                      status: success
+                    data:
+                      id: 55
+                      event: "kkonser"
+                      schedule: "2022-02-01 19:30 +07"
+                      quota: 27
+                      price: 250000
+  /ticket/update:
+    post:
+      tags:
+        - ticket
+      summary: update ticket
+      operationId: updateTicket
+      requestBody:
+        description: Request body to update ticket
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTicketRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                      id: 55
+                      event: "konser musik"
+                      schedule: "2022-05-01 19:30 +07"
+                      quota: 34
+                      price: 250000
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateTicketRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                      meta:
+                        message: Update ticket data
+                        code: 200
+                        status: success
+                      data:
+                        id: 55
+                        event: "konser musik"
+                        schedule: "2022-05-01 19:30 +07"
+                        quota: 34
+                        price: 250000
+  /ticket/delete:
+    post:
+      tags:
+        - ticket
+      summary: delete ticket
+      operationId: deleteTicket
+      requestBody:
+        description: Request body to delete ticket
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteTicketRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  id:  1
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteTicketRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                      {
+                          "meta": {
+                              "message": "Delete ticket data",
+                              "code": 200,
+                              "status": "success"
+                          },
+                          "data": null
+                      }                                      
+  /tickets:
+    post:
+      tags:
+        - ticket
+      summary: get all ticket
+      operationId: getAllTicket
+      requestBody:
+        description: Request body to get all ticket
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAllTicketRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllTicketRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                      meta:
+                        message: Get ticket data
+                        code: 200
+                        status: success
+                      data:
+                        - id: 51
+                          event: "kkonser"
+                          schedule: "2022-02-01 19:30 +07"
+                          quota: 27
+                          price: 250000
+                        - id: 52
+                          event: "musik"
+                          schedule: "2022-05-21 18:30 +07"
+                          quota: 20
+                          price: 100000
+                        - id: 53
+                          event: "musik"
+                          schedule: "2022-05-21 18:30 +07"
+                          quota: 20
+                          price: 100000
+                        - id: 54
+                          event: "kkonser musik"
+                          schedule: "2022-06-01 19:30 +07"
+                          quota: 28
+                          price: 250000
+  /ticket:
+    post:
+      tags:
+        - ticket
+      summary: get ticket by id
+      operationId: getTicketById
+      requestBody:
+        description: Request body to get ticket by id
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTicketRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  id:  55
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTicketRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                    meta:
+                      message: Get ticket data
+                      code: 200
+                      status: success
+                    data:
+                      id: 54
+                      event: "kkonser musik"
+                      schedule: "2022-06-01 19:30 +07"
+                      quota: 28
+                      price: 250000
+                      
+  /checkout/create:
+    post:
+      tags:
+        - checkout
+      summary: create checkout
+      operationId: createCheckout
+      requestBody:
+        description: Request body to create checkout
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCheckoutRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  user_id: 66
+                  ticket_id: 51
+                  quantity: 2
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCheckoutRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                    meta:
+                      message: Checkout has been added
+                      code: 200
+                      status: success
+                    data:
+                      id: 54
+                      user_id: 66
+                      ticket_id: 51
+                      name: "anton"
+                      event: "kkonser"
+                      quantity: 2
+                      timeout: "2022-04-13 03:38 +07"
+                      price: 250000
+                      total_amount: 500000
+  /checkout/delete:
+    post:
+      tags:
+        - checkout
+      summary: delete checkout
+      operationId: deleteCheckout
+      requestBody:
+        description: Request body to delete checkout
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteCheckoutRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  id:  54
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCheckoutRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                      {
+                          "meta": {
+                              "message": "Delete checkout data",
+                              "code": 200,
+                              "status": "success"
+                          },
+                          "data": null
+                      }                                      
+  /checkouts:
+    post:
+      tags:
+        - checkout
+      summary: get all checkout by user id
+      operationId: getAllCheckout
+      requestBody:
+        description: Request body to get all checkout
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAllCheckoutRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  user_id:  66                
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllCheckoutRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                      meta:
+                        message: Get checkout data
+                        code: 200
+                        status: success
+                      data:
+                        - id: 53
+                          user_id: 66
+                          ticket_id: 54
+                          name: "anton"
+                          event: "kkonser musik"
+                          quantity: 2
+                          timeout: "2022-04-13 01:44 +07"
+                          price: 250000
+                          total_amount: 500000
+                        - id: 54
+                          user_id: 66
+                          ticket_id: 51
+                          name: "anton"
+                          event: "kkonser"
+                          quantity: 2
+                          timeout: "2022-04-13 03:38 +07"
+                          price: 250000
+                          total_amount: 500000
+  /checkout:
+    post:
+      tags:
+        - checkout
+      summary: get checkout by checkout id
+      operationId: getCheckoutById
+      requestBody:
+        description: Request body to get checkout by id
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetCheckoutRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  id:  54
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCheckoutRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                      meta:
+                        message: Get checkout data
+                        code: 200
+                        status: success
+                      data:
+                        id: 54
+                        user_id: 66
+                        ticket_id: 51
+                        name: "anton"
+                        event: "kkonser"
+                        quantity: 2
+                        timeout: "2022-04-13 03:38 +07"
+                        price: 250000
+                        total_amount: 500000
+
+  /transaction/create:
+    post:
+      tags:
+        - transaction
+      summary: create transaction
+      operationId: createTransaction
+      requestBody:
+        description: Request body to create transaction
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTransactionRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  checkout_id: 66
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTransactionRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                      meta:
+                        message: Transaction has been added
+                        code: 200
+                        status: success
+                      data:
+                        id: 65
+                        user_id: 66
+                        ticket_id: 54
+                        name: anton
+                        event: kkonser musik
+                        quantity: 2
+                        status: PAID
+                        price: 250000
+                        total_amount: 500000
+  /transaction/delete:
+    post:
+      tags:
+        - transaction
+      summary: delete transaction
+      operationId: deleteTransaction
+      requestBody:
+        description: Request body to delete transaction
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteTransactionRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  id:  65
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteTransactionRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                      {
+                          "meta": {
+                              "message": "Delete transaction data",
+                              "code": 200,
+                              "status": "success"
+                          },
+                          "data": null
+                      }                                      
+  /transactions:
+    post:
+      tags:
+        - transaction
+      summary: get all transaction by user id
+      operationId: getAllTransaction
+      requestBody:
+        description: Request body to get all transaction
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAllTransactionRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  user_id:  66                
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllTransactionRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                      meta:
+                        message: Get transaction data
+                        code: 200
+                        status: success
+                      data:
+                        - id: 65
+                          user_id: 66
+                          ticket_id: 54
+                          name: anton
+                          event: kkonser musik
+                          quantity: 2
+                          status: PAID
+                          price: 250000
+                          total_amount: 500000
+  /transaction:
+    post:
+      tags:
+        - transaction
+      summary: get transaction by transaction id
+      operationId: getTransactionById
+      requestBody:
+        description: Request body to get transaction by id
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTransactionRq'
+            examples:
+              ScenarioA:
+                summary: "Scenario A"
+                value:
+                  id:  54
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTransactionRs'
+              examples:
+                ScenarioA:
+                  summary: "Scenario OK"
+                  value:
+                      meta:
+                        message: Get transaction data
+                        code: 200
+                        status: success
+                      data:
+                        - id: 65
+                          user_id: 66
+                          ticket_id: 54
+                          name: anton
+                          event: kkonser musik
+                          quantity: 2
+                          status: PAID
+                          price: 250000
+                          total_amount: 500000
+                                                                                                
+
+
+ 
+components:
+  schemas:
+    CreateUserRq:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          pattern: user@mail.com
+    CreateUserRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+                    pattern: user@mail.com  
+    UpdateUserRq:
+      type: object
+      required:
+        - id
+        - name
+        - email
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+          pattern: user@mail.com
+    UpdateUserRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+                    pattern: user@mail.com
+    DeleteUserRq:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+    DeleteUserRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+    GetAllUserRq:
+      type: object
+    GetAllUserRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+                    pattern: user@mail.com                      
+    GetUserRq:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+    GetUserRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+                    pattern: user@mail.com                      
+    CreateTicketRq:
+      type: object
+      required:
+        - event
+        - schedule
+        - price
+        - quota
+      properties:
+        event:
+          type: string
+        schedule:
+          type: string
+          pattern: "2022-02-01 19:30 +07"
+        price:
+          type: integer
+        quota:
+          type: integer
+    CreateTicketRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  event:
+                    type: string
+                  schedule:
+                    type: string
+                    pattern: "2022-02-01 19:30 +07"
+                  price:
+                    type: integer
+                  quota:
+                    type: integer
+    UpdateTicketRq:
+      type: object
+      required:
+        - id
+        - event
+        - schedule
+        - price
+        - quota
+      properties:
+        id:
+          type: integer
+        event:
+          type: string
+        schedule:
+          type: string
+          pattern: "2022-02-01 19:30 +07"
+        price:
+          type: integer
+        quota:
+          type: integer
+    UpdateTicketRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  event:
+                    type: string
+                  schedule:
+                    type: string
+                    pattern: "2022-02-01 19:30 +07"
+                  price:
+                    type: integer
+                  quota:
+                    type: integer
+    DeleteTicketRq:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+    DeleteTicketRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+    GetAllTicketRq:
+      type: object
+    GetAllTicketRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  event:
+                    type: string
+                  schedule:
+                    type: string
+                    pattern: "2022-02-01 19:30 +07"
+                  price:
+                    type: integer
+                  quota:
+                    type: integer                   
+    GetTicketRq:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+    GetTicketRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  event:
+                    type: string
+                  schedule:
+                    type: string
+                    pattern: "2022-02-01 19:30 +07"
+                  price:
+                    type: integer
+                  quota:
+                    type: integer                        
+    CreateCheckoutRq:
+      type: object
+      required:
+        - user_id
+        - ticket_id
+        - quantity
+      properties:
+        user_id:
+          type: integer
+        ticket_id:
+          type: integer
+        quantity:
+          type: integer
+    CreateCheckoutRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  ticket_id:
+                    type: integer                    
+                  name:
+                    type: string                    
+                  event:
+                    type: string
+                  quantity:
+                    type: integer  
+                  timeout:
+                    type: string
+                    pattern: "2022-02-01 19:30 +07"
+                  price:
+                    type: integer
+                  total_amount:
+                    type: integer
+    DeleteCheckoutRq:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+    DeleteCheckoutRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+    GetAllCheckoutRq:
+      type: object
+      required:
+        - user_id
+      properties:
+        user_id:
+          type: integer      
+    GetAllCheckoutRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  ticket_id:
+                    type: integer                    
+                  name:
+                    type: string                    
+                  event:
+                    type: string
+                  quantity:
+                    type: integer  
+                  timeout:
+                    type: string
+                    pattern: "2022-02-01 19:30 +07"
+                  price:
+                    type: integer
+                  total_amount:
+                    type: integer                 
+    GetCheckoutRq:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+    GetCheckoutRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  ticket_id:
+                    type: integer                    
+                  name:
+                    type: string                    
+                  event:
+                    type: string
+                  quantity:
+                    type: integer  
+                  timeout:
+                    type: string
+                    pattern: "2022-02-01 19:30 +07"
+                  price:
+                    type: integer
+                  total_amount:
+                    type: integer                                   
+    CreateTransactionRq:
+      type: object
+      required:
+        - checkout_id
+      properties:
+        checkout_id:
+          type: integer
+    CreateTransactionRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  ticket_id:
+                    type: integer                    
+                  name:
+                    type: string                    
+                  event:
+                    type: string
+                  quantity:
+                    type: integer  
+                  status:
+                    type: string
+                  price:
+                    type: integer
+                  total_amount:
+                    type: integer
+    DeleteTransactionRq:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+    DeleteTransactionRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+    GetAllTransactionRq:
+      type: object
+      required:
+        - user_id
+      properties:
+        user_id:
+          type: integer      
+    GetAllTransactionRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  ticket_id:
+                    type: integer                    
+                  name:
+                    type: string                    
+                  event:
+                    type: string
+                  quantity:
+                    type: integer  
+                  status:
+                    type: string
+                  price:
+                    type: integer
+                  total_amount:
+                    type: integer                
+    GetTransactionRq:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+    GetTransactionRs:
+        allOf: 
+          - $ref: "#/components/schemas/ApiResponse"
+          - type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  ticket_id:
+                    type: integer                    
+                  name:
+                    type: string                    
+                  event:
+                    type: string
+                  quantity:
+                    type: integer  
+                  status:
+                    type: string
+                  price:
+                    type: integer
+                  total_amount:
+                    type: integer                  
+    ApiResponse:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: integer
+            status:
+              type: string
+
